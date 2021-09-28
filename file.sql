@@ -31,7 +31,23 @@ FROM `degrees`
 WHERE `level` = 'magistrale';
 
 --^7) Da quanti dipartimenti è composta l'università? (12).
-SELECT COUNT(*) FROM `departments`;
+SELECT COUNT(*)
+FROM `departments`;
 
 --^8) Quanti sono gli insegnanti che non hanno un numero di telefono? (50).
-SELECT COUNT(*) FROM `teachers` WHERE ISNULL(`phone`);
+SELECT COUNT(*)
+FROM `teachers`
+WHERE ISNULL(`phone`);
+
+--^9) Contare quanti iscritti ci sono stati ogni anno.
+SELECT COUNT(*), YEAR(`enrolment_date`)
+FROM `students`
+GROUP BY YEAR(`enrolment_date`);
+
+--^10) Contare gli insegnanti che hanno l'ufficio nello stesso edificio.
+
+
+--^11) Calcolare la media dei voti di ogni appello d'esame.
+
+
+--^12) Contare quanti corsi di laurea ci sono per ogni dipartimento.
