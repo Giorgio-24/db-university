@@ -59,3 +59,14 @@ ORDER BY `teachers`.`surname`, `teachers`.`name`;
 
 --^7) BONUS: Selezionare per ogni studente quanti tentativi d’esame ha sostenuto per
 --^   superare ciascuno dei suoi esami.
+SELECT `students`.`surname`, `students`.`name`, `courses`.`name`, COUNT(`exam_student`.`vote`) AS `attempts`,
+MAX(`exam_student`.`vote`) AS `voto_massimo` --MAX PRENDE IL VALORE MASSIMO DELLA COLONNA.
+FROM `students`
+JOIN `exam_student`
+ON `student`.`id` = `exam_student`.`id`
+JOIN `exams`
+ON `exam_id` = `exams`.`id`
+JOIN `courses`
+ON `course_id` = `courses`.`id`
+GROUP BY `students`.`id`, `courses`.`id`
+HAVING `voto_massimo` >= 18;  --HAVING E COME UN WHERE MA FATTO CON PARAMETRI CHE PRIMA NON ESISTEVANO, TIPO `voto_massimo`
